@@ -42,6 +42,8 @@ public class MainGUI extends javax.swing.JFrame {
             lastSelectedDirectory = datos.resultados.getString("path");
 
             tRutaArchivo.setText(lastSelectedDirectory + "\\ATT2000.MDB");
+            
+            datos.cerrar();
 
         } catch (Exception e) {
             System.err.println(e);
@@ -174,6 +176,8 @@ public class MainGUI extends javax.swing.JFrame {
                 String consulta = "insert into ultimo_directorio values (0, '" + lastSelectedDirectory.replace("\\", "\\\\") + "')";
 
                 datos.actualizar(consulta);
+                
+                datos.cerrar();
 
             } catch (Exception e) {
                 System.err.println(e);
