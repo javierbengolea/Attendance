@@ -5,6 +5,7 @@
  */
 package att;
 
+import fabrica.DepartamentosConstantes;
 import java.io.File;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -71,7 +72,7 @@ public class Lector {
 
     static {
         try {
-            agentes = getAgentesMA(Agente.TODOS);
+            agentes = getAgentesMA(DepartamentosConstantes.TODOS);
             //agentes = getAgentesMA(new int[]{717});
         } catch (Exception e) {
             agentes = new ArrayList<>();
@@ -191,7 +192,7 @@ public class Lector {
             consultas_hora = consultas_hora.substring(0, consultas_hora.length() - 2) + ";";
 
             VerConsultas vConsultas = new VerConsultas(TABLA_DETALLE_HORAS_EXTRAS, consultas_detalle, TABLA_HORAS_EXTRAS, consultas_hora);
-            
+
             vConsultas.setVisible(true);
             //System.out.println(consultas_detalle);
             //System.out.println(consultas_hora);
@@ -853,14 +854,14 @@ public class Lector {
         String consulta;// = "select * from " + TABLA_MARCACIONES;
 
         switch (tipo) {
-            case Agente.TODOS ->
+            case DepartamentosConstantes.TODOS ->
                 consulta = "select a.tarjeta, a.nombres from " + TABLA_MARCACIONES + ", agentes a "
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         + " and a.tarjeta in (select aa.tarjeta from agentes aa where aa.activo = 1)  "
                         //       + " and id_encargado not in (0,1) "
                         // + " and a.tarjeta < 1320 "
                         + "group by a.tarjeta order by a.nombres";
-            case Agente.OPP ->
+            case DepartamentosConstantes.OPP ->
                 consulta = "select a.tarjeta, a.nombres from " + TABLA_MARCACIONES + ", agentes a "
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         + " and id_encargado  in (1) "
@@ -880,7 +881,7 @@ public class Lector {
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         + " and id_encargado NOT IN (1,2,16,22) "
                         + "group by a.tarjeta order by a.nombres";
-            case Agente.LOGISTICA ->
+            case DepartamentosConstantes.LOGISTICA ->
                 consulta = "select a.tarjeta, a.nombres from " + TABLA_MARCACIONES + ", agentes a "
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         //+ "and a.tarjeta in ('1075', '1282', '1112', '1008', '955', '1177', '1287', '1245', '1156', '1014', '1236') "
@@ -893,17 +894,17 @@ public class Lector {
                         // + "and a.tarjeta in ('1075', '1282', '1112', '1008', '955', '1177', '1287', '1234','1236') "
                         + "and a.id_encargado = 23 "
                         + "group by a.tarjeta order by a.nombres";
-            case Agente.LICENCIAS ->
+            case DepartamentosConstantes.LICENCIAS ->
                 consulta = "select a.tarjeta, a.nombres from " + TABLA_MARCACIONES + ", agentes a "
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         + "and a.tarjeta in ('1175', '1202') "
                         + "group by a.tarjeta order by a.nombres";
-            case Agente.SALUD ->
+            case DepartamentosConstantes.SALUD ->
                 consulta = "select a.tarjeta, a.nombres from " + TABLA_MARCACIONES + ", agentes a "
                         + " where a.tarjeta in (select aa.tarjeta from agentes aa where aa.horas_extras = 1)  "
                         + "and a.tarjeta in ('990', '740', '1347', '1057', '938', '1354', '1165', '1115', '1151', '1251', '1157', '3', '979', '3', '808', '1342', '1352', '1165', '1057', '1115', '1251', '1157', '1347', '1354', '990', '808', '1342', '1352', '990', '1057', '938', '1347', '1165', '1115', '1151', '1157', '1251', '1354', '1342', '740', '990', '1057', '1251', '1347', '1165', '1115', '1352', '938', '1157', '1354', '808', '1342', '1352', '740', '990', '1057', '938', '1165', '1115', '1151', '1347', '1251', '1157', '1354', '3', '808', '3', '990', '1342', '740', '1165', '1115', '1251', '1347', '1352', '1354', '1157', '1342', '808', '1352', '740', '979', '1347', '1347', '808', '1352', '808', '1352', '990', '740', '1057', '938', '1165', '1115', '1151', '1354', '1251', '1347', '1157', '3', '3', '808', '1342', '740', '1119', '1057', '1251', '1151', '1347', '1115', '1157', '938', '1352', '1354', '808', '1342', '1352', '990', '1119', '740', '1057', '938', '1165', '1115', '1151', '1347', '1354', '1157', '808', '1342', '1057', '1347', '1165', '1115', '1251', '1352', '938', '1157', '990', '1354', '1342', '1352', '990', '740', '1057', '1347', '1251', '938', '1151', '1165', '1115', '1354', '1157', '979', '808', '990', '1342', '1165', '1115', '1057', '1151', '1347', '1251', '938', '1157', '1352', '1354', '808', '1342', '1352', '990', '740', '1057', '1347', '1347', '1115', '1151', '938', '1251', '1157', '1352', '1354', '808', '990', '740', '1119', '1057', '1251', '1115', '1354', '1157', '1347', '1342', '808', '1352', '1119', '1119', '1119', '740', '990', '990', '1057', '1151', '1347', '938', '1115', '1251', '1157', '3', '1354', '808', '3', '1342', '1342', '1057', '1119', '1347', '1347', '1251', '1157', '1354', '1352', '808', '1342', '1352', '740', '979', '1352', '808', '1352', '979', '979', '1354', '1354', '808', '740', '1119', '990', '1057', '938', '1151', '1115', '1347', '1251', '1354', '1157', '3', '979', '740', '1342', '1119', '1057', '1151', '1115', '938', '1157', '1352', '1354', '1347', '990', '1342', '1352', '740', '990', '445', '1057', '1352', '938', '1151', '1115', '1251', '1354', '979', '1347', '1342', '1151', '1057', '1115', '1251', '1157', '1354', '1347', '1342', '1342', '1352', '990', '445', '740', '1057', '1151', '938', '1115', '1347', '1251', '1157', '3', '979', '1354', '3', '740', '445', '740', '1342', '1119', '1057', '1151', '1251', '1115', '1352', '938', '1157', '1354', '1347', '1342', '1342', '990', '1352', '990', '445', '740', '1057', '938', '1347', '1115', '1151', '1354', '1251', '1157', '445', '740', '1342', '1057', '1115', '1251', '1352', '938', '1157', '1354', '990', '1347', '1342', '1352', '445', '990', '1057', '938', '1115', '1251', '1151', '1347', '1354', '1157', '3', '3', '445', '1342', '1057', '1151', '1115', '1354', '1352', '1347', '1347', '1342', '990', '1352', '979', '990', '990', '1119', '990', '1347', '1119', '1347', '990', '979', '990', '1352', '990', '1352', '990', '990', '445', '990', '1119', '740', '1057', '938', '1347', '1115', '1251', '1151', '1354', '3', '979', '3', '445', '1342', '1119', '1347', '1251', '1057', '1115', '938', '1157', '1352', '740', '1354', '1342', '1342', '990', '1352', '740', '445', '938', '1151', '1115', '1057', '1354', '1251', '1157', '1347', '445', '1342', '1057', '1251', '1115', '1157', '938', '1354', '1342', '1347', '740', '445', '1057', '938', '1115', '1115', '1354', '1347', '1151', '1251', '3', '3', '445', '1342', '1119', '1151', '1057', '1251', '1115', '1347', '1352', '1354', '1342', '1352', '990', '1119', '740', '979', '1347', '740', '1347', '1347', '990', '1354', '1354', '740', '990', '1057', '938', '1347', '1115', '1165', '1157', '1354', '3', '3', '740', '1342', '1119', '1347', '1251', '1057', '1115', '1165', '1352', '938', '1157', '1354', '990', '1342', '1119', '1352', '990', '740', '445', '938', '974','1057', '1354', '1115', '1165', '1251', '1119', '1119', '1157', '1347', '445', '1342', '1347', '1119', '1165', '1115', '1352', '938', '1157', '990', '1354', '1342', '1352') "
                         + "group by a.tarjeta order by a.nombres";
-            case Agente.CONSULTA -> {
+            case DepartamentosConstantes.CONSULTA -> {
                 consulta = "select hd.tarjeta as legajo, a.nombres as empleado, e.nombre as area "
                         + "from " + TABLA_HORAS_EXTRAS + " hd\n"
                         + "join agentes a on a.tarjeta = hd.tarjeta \n"

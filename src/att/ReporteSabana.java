@@ -4,6 +4,7 @@
  */
 package att;
 
+import fabrica.DepartamentosConstantes;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ReporteSabana {
 
         ArrayList<ArrayList<String>> registraciones = new ArrayList();
 
-        int tipo_agentes = Agente.TODOS;
+        int tipo_agentes = DepartamentosConstantes.TODOS;
 
         String consulta;
 

@@ -5,30 +5,30 @@
  */
 package att;
 
+import fabrica.DepartamentosConstantes;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import util.AdaptadorMySQL;
+import general.Persona;
+import personal.Encargado;
 
 /**
  *
  * @author JavierPro
  */
-public class Agente {
+public class Agente extends Persona {
 
-    String nombre = "";
-    int tarjeta = 0;
-
-    public static final int TODOS = 0;
-    public static final int OPP = 1;
-    public static final int INSPECTORES = 2;
-    public static final int RESTO = 3;
-    public static final int LOGISTICA = 4;
-    public static final int LICENCIAS = 5;
-    public static final int OPP_DIEGO = 6;
-    public static final int SALUD = 38;
-    public static final int CONSULTA = 88;
+    String nombre;
+    int tarjeta;
+    String legajo;
+    Hora entrada;
+    Hora salida;
+    Hora deficit;
+    Boolean horasExtras;
+    Encargado encargado;
+    Boolean activo;
 
     public HashMap<Integer, String> nombres = new LinkedHashMap<>();
 
@@ -97,7 +97,7 @@ public class Agente {
     public static void main(String[] args) {
         Agente agentes = new Agente();
 
-        System.out.println(Agente.OPP);
+        System.out.println(DepartamentosConstantes.OPP);
 
         //   System.out.println(agentes.nombres);
     }
