@@ -691,16 +691,20 @@ public class CrearMes {
             
             
             
-        }, mes, anio);*/
-        int mes = 2;
+        }, mes, anio);
+                int mes = 2;
+
+         */
+        int mes = 3;
         int anio = 2024;
 
         crearMes(new int[]{
-            0, 0, 1,
+            0, 1,
             1, 0, 0, 0, 0, 0, 1,
-            1, 1, 1, 0, 0, 0, 1,
             1, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0
+            1, 0, 0, 0, 0, 0, 1,
+            1, 0, 0, 0, 1, 1, 1,
+            1
 
         }, mes, anio);
     }

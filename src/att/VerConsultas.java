@@ -5,6 +5,7 @@
  */
 package att;
 
+import javax.swing.JOptionPane;
 import util.AdaptadorMySQL;
 
 /**
@@ -12,7 +13,7 @@ import util.AdaptadorMySQL;
  * @author SistemasRC0011
  */
 public class VerConsultas extends javax.swing.JFrame {
-    
+
     String tablaDetalle = "";
     String tablaHoras = "";
 
@@ -21,15 +22,11 @@ public class VerConsultas extends javax.swing.JFrame {
      */
     public VerConsultas() {
         initComponents();
-    }
-
-    public VerConsultas(String tablaDetalle, String consultasDetalle, String tablaHoras, String consultasHoras) {
-        initComponents();
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    JOptionPane.showMessageDialog(null, info.getClassName());
                     break;
                 }
             }
@@ -42,7 +39,11 @@ public class VerConsultas extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VerConsultas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+    }
+
+    public VerConsultas(String tablaDetalle, String consultasDetalle, String tablaHoras, String consultasHoras) {
+        initComponents();
+
         this.tablaDetalle = tablaDetalle;
         this.tablaHoras = tablaHoras;
 
@@ -51,6 +52,14 @@ public class VerConsultas extends javax.swing.JFrame {
 
         tConsultasDetalle.setText(consultasDetalle);
         tConsultasHoras.setText(consultasHoras);
+
+        try {
+            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //JOptionPane.showMessageDialog(null, "Creo que basicamente le c");
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     /**
@@ -70,7 +79,7 @@ public class VerConsultas extends javax.swing.JFrame {
         bActualizarDetalles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(null);
+        setTitle("Actualización de Horas Extras");
         setPreferredSize(new java.awt.Dimension(716, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -108,20 +117,20 @@ public class VerConsultas extends javax.swing.JFrame {
 
     private void bActualizarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarDetallesActionPerformed
         // TODO add your handling code here:
-        
+
         AdaptadorMySQL datos = new AdaptadorMySQL();
-        
+
         String query_truncate = "TRUNCATE TABLE " + tablaDetalle + ";";
         String query_insert = tConsultasDetalle.getText();
-        
-        try{
+
+        try {
             datos.actualizar(query_truncate);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
-        try{
+        try {
             datos.actualizar(query_insert);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
 
@@ -130,18 +139,18 @@ public class VerConsultas extends javax.swing.JFrame {
     private void bActualizarHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarHorasActionPerformed
         // TODO add your handling code here:
         AdaptadorMySQL datos = new AdaptadorMySQL();
-        
+
         String query_truncate = "TRUNCATE TABLE " + tablaHoras + ";";
         String query_insert = tConsultasHoras.getText();
-        
-        try{
+
+        try {
             datos.actualizar(query_truncate);
-        }catch(Exception e){
-            System.err.println(e);  
+        } catch (Exception e) {
+            System.err.println(e);
         }
-        try{
+        try {
             datos.actualizar(query_insert);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
     }//GEN-LAST:event_bActualizarHorasActionPerformed

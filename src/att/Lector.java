@@ -35,7 +35,7 @@ public class Lector {
     static int TOPE = 1800;
     static int TOPE_HORAS = 1800 * 2 * 3;
 
-    public static final int MES = 2;
+    public static final int MES = 3;
     public static final int ANIO = 2024;
 
     /**
@@ -190,9 +190,11 @@ public class Lector {
             consultas_detalle = consultas_detalle.substring(0, consultas_detalle.length() - 2) + ";";
             consultas_hora = consultas_hora.substring(0, consultas_hora.length() - 2) + ";";
 
-            new VerConsultas(TABLA_DETALLE_HORAS_EXTRAS, consultas_detalle, TABLA_HORAS_EXTRAS, consultas_hora).setVisible(true);
-            System.out.println(consultas_detalle);
-            System.out.println(consultas_hora);
+            VerConsultas vConsultas = new VerConsultas(TABLA_DETALLE_HORAS_EXTRAS, consultas_detalle, TABLA_HORAS_EXTRAS, consultas_hora);
+            
+            vConsultas.setVisible(true);
+            //System.out.println(consultas_detalle);
+            //System.out.println(consultas_hora);
 
             getMarcacionesIndividuales_();
 

@@ -9,6 +9,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.FileChooserUI;
 import util.AdaptadorMySQL;
 import util.Fecha;
+import util.Globals;
+import util.MySQLAdapter;
 
 /**
  *
@@ -32,6 +35,8 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() {
         initComponents();
 
+        bCrearTables.setVisible(false);
+
         try {
             AdaptadorMySQL datos = new AdaptadorMySQL();
 
@@ -42,12 +47,68 @@ public class MainGUI extends javax.swing.JFrame {
             lastSelectedDirectory = datos.resultados.getString("path");
 
             tRutaArchivo.setText(lastSelectedDirectory + "\\ATT2000.MDB");
-            
+
             datos.cerrar();
 
         } catch (Exception e) {
             System.err.println(e);
         }
+
+        try {
+
+        } catch (Exception e) {
+
+        }
+    }
+
+     /**
+     * Verifies the existence of tables for the given month and year.
+     *
+     * @param month The month for which tables are to be checked.
+     * @param year  The year for which tables are to be checked.
+     * @return A HashMap containing table names as keys and their existence status as values.
+     */
+    
+    public static HashMap<String, Boolean> verifyTables(int month, int year) {
+        HashMap<String, Boolean> output = new HashMap<>();
+
+        String tableAttendance = "attendance_" + Globals.MONTH_ABBREV[month - 1] + "_" + year;
+        String tableDetail = "overtime_detail_" + Globals.MONTH_ABBREV[month - 1] + "_" + year;
+        String tableOvertimeHours = "overtime_hours_" + Globals.MONTH_ABBREV[month - 1] + "_" + year;
+
+        output.put(tableAttendance, searchTable(tableAttendance));
+        output.put(tableDetail, searchTable(tableDetail));
+        output.put(tableOvertimeHours, searchTable(tableOvertimeHours));
+
+        return output;
+    }
+
+    /**
+     * Searches for the existence of the table @tableName in the schema.
+     *
+     * @param tableName The name of the table to search for.
+     * @return true if found, false otherwise.
+     */
+    public static boolean searchTable(String tableName) {
+        try {
+            MySQLAdapter data = new MySQLAdapter();
+
+            String query = """
+                       SELECT COUNT(*)
+                       FROM information_schema.tables
+                       WHERE table_schema = '%s'
+                       AND table_name = '%s';
+                       """.formatted(Globals.MYSQL_SCHEMA_NAME, tableName);
+
+            data.executeQuery(query);
+            data.results.next();
+
+            return data.results.getInt(1) > 0;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
     }
 
     /**
@@ -68,6 +129,7 @@ public class MainGUI extends javax.swing.JFrame {
         tAnio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         taMarcas = new javax.swing.JTextArea();
+        bCrearTables = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -77,7 +139,6 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de Registraciones y Horas Extras");
         setForeground(new java.awt.Color(153, 153, 153));
-        setPreferredSize(new java.awt.Dimension(840, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Archivo");
@@ -116,6 +177,9 @@ public class MainGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(taMarcas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 680, 500));
+
+        bCrearTables.setText("Crear Tablas");
+        getContentPane().add(bCrearTables, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -176,7 +240,7 @@ public class MainGUI extends javax.swing.JFrame {
                 String consulta = "insert into ultimo_directorio values (0, '" + lastSelectedDirectory.replace("\\", "\\\\") + "')";
 
                 datos.actualizar(consulta);
-                
+
                 datos.cerrar();
 
             } catch (Exception e) {
@@ -197,7 +261,6 @@ public class MainGUI extends javax.swing.JFrame {
         String URL_ACCESS = "jdbc:ucanaccess://" + tRutaArchivo.getText();
 
         //JOptionPane.showMessageDialog(null, URL_ACCESS);
-
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -231,7 +294,7 @@ public class MainGUI extends javax.swing.JFrame {
             ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
             for (String[] row : array) {
                 // Create a new HashMap for each row
-                
+
                 map.put(row[0], row[1]);
                 //map.put("Value", row[1]);
                 // Add the HashMap to the ArrayList
@@ -253,15 +316,15 @@ public class MainGUI extends javax.swing.JFrame {
                 Fecha fecha = new Fecha().setFechaMySQL(checktime.substring(0, 10));
 
                 int codigo = checktype.equals("I") ? 20 : 21;
-                String nombre = map.get(tarjeta+"");
+                String nombre = map.get(tarjeta + "");
 
                 //marcaciones += tarjeta + "\t " + nombre + "\t " + fecha + "\t " + hora + "\t " + 1 + "\t " + codigo + "\t "+ new Fecha() + "\n";
                 Marcacion marca = new Marcacion(tarjeta, nombre, tarjeta, fecha, hora, 1, codigo, new Fecha());
                 marcasList.add(marca);
-                marcaciones += marca.getConsultaInsert(Integer.parseInt(tMes.getText()), Integer.parseInt(tAnio.getText())) + "\n";
+                marcaciones += marca.getConsultaInsert(Integer.parseInt(tMes.getText()), Integer.parseInt(tAnio.getText())) + ";\n";
 
             }
-            
+
             taMarcas.setText(marcaciones);
 
             // Iterate through the data in the result set and display it.
@@ -329,6 +392,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCrearTables;
     private javax.swing.JButton bLeerAccess;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
