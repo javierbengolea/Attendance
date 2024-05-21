@@ -94,12 +94,84 @@ public class Agente extends Persona {
         return salida;
     }
 
+    public void setTarjeta(int tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+    public void setSalida(Hora salida) {
+        this.salida = salida;
+    }
+
+    public void setNombres(HashMap<Integer, String> nombres) {
+        this.nombres = nombres;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public void setHorasExtras(Boolean horasExtras) {
+        this.horasExtras = horasExtras;
+    }
+
+    public void setEntrada(Hora entrada) {
+        this.entrada = entrada;
+    }
+
+    public void setEncargado(Encargado encargado) {
+        this.encargado = encargado;
+    }
+
+    public void setDeficit(Hora deficit) {
+        this.deficit = deficit;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public Hora getSalida() {
+        return salida;
+    }
+
+    public HashMap<Integer, String> getNombres() {
+        return nombres;
+    }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public Boolean getHorasExtras() {
+        return horasExtras;
+    }
+
+    public Hora getEntrada() {
+        return entrada;
+    }
+
+    public Encargado getEncargado() {
+        return encargado;
+    }
+
+    public Hora getDeficit() {
+        return deficit;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
     public static void main(String[] args) {
         Agente agentes = new Agente();
 
         System.out.println(DepartamentosConstantes.OPP);
 
-        //   System.out.println(agentes.nombres);
+        System.out.println(agentes.nombres);
     }
 
     public static String getHoraEntrada(int tarjeta) {
