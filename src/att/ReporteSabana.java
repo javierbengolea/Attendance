@@ -53,7 +53,7 @@ public class ReporteSabana {
         //String tarjeta;
         String TABLA_DETALLE_HORAS_EXTRAS = Lector.TABLA_DETALLE_HORAS_EXTRAS;
 
-        String archivo = "C:\\2024\\03-mar\\feb_2024_OPP.html";
+        String archivo = "C:\\2024\\05-may\\abr_2024_OPP.html";
 
         PrintWriter out = new PrintWriter(new File(archivo));
 
@@ -232,7 +232,7 @@ public class ReporteSabana {
     public static String formatHora(String hora) {
         String salida;
 
-        double nuevo_valor = (double)(new Hora(hora).getValor()) / 3600.0;
+        double nuevo_valor = (double) (new Hora(hora).getValor()) / 3600.0;
 
         if (nuevo_valor == 0) {
             salida = "";

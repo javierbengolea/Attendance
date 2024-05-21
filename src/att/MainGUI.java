@@ -139,11 +139,19 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de Registraciones y Horas Extras");
         setForeground(new java.awt.Color(153, 153, 153));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Archivo");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-        getContentPane().add(tRutaArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 380, -1));
+        jLabel1.setPreferredSize(new java.awt.Dimension(64, 16));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 54, -1, -1));
+
+        tRutaArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tRutaArchivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tRutaArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 280, -1));
 
         bLeerAccess.setText("Leer");
         bLeerAccess.addActionListener(new java.awt.event.ActionListener() {
@@ -151,17 +159,23 @@ public class MainGUI extends javax.swing.JFrame {
                 bLeerAccessActionPerformed(evt);
             }
         });
-        getContentPane().add(bLeerAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
+        getContentPane().add(bLeerAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 64, -1));
 
         jLabel2.setText("Mes");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jLabel2.setPreferredSize(new java.awt.Dimension(64, 16));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 24, 64, -1));
 
         tMes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         tMes.setText("3");
-        getContentPane().add(tMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 80, -1));
+        tMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tMesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 64, -1));
 
         jLabel3.setText("Año");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 24, 64, -1));
 
         tAnio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         tAnio.setText("2024");
@@ -170,16 +184,21 @@ public class MainGUI extends javax.swing.JFrame {
                 tAnioActionPerformed(evt);
             }
         });
-        getContentPane().add(tAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 80, -1));
+        getContentPane().add(tAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 80, -1));
 
         taMarcas.setColumns(20);
         taMarcas.setRows(5);
         jScrollPane1.setViewportView(taMarcas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 680, 500));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 736, 310));
 
         bCrearTables.setText("Crear Tablas");
-        getContentPane().add(bCrearTables, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+        bCrearTables.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearTablesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bCrearTables, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 128, -1));
 
         jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -354,6 +373,18 @@ public class MainGUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_bLeerAccessActionPerformed
+
+    private void tMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tMesActionPerformed
+
+    private void bCrearTablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearTablesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCrearTablesActionPerformed
+
+    private void tRutaArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRutaArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tRutaArchivoActionPerformed
 
     /**
      * @param args the command line arguments

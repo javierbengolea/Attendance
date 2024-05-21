@@ -695,7 +695,7 @@ public class CrearMes {
                 int mes = 2;
 
          */
-        int mes = 3;
+       /* int mes = 3;
         int anio = 2024;
 
         crearMes(new int[]{
@@ -705,6 +705,18 @@ public class CrearMes {
             1, 0, 0, 0, 0, 0, 1,
             1, 0, 0, 0, 1, 1, 1,
             1
+
+        }, mes, anio);*/
+       
+               int mes = 4;
+        int anio = 2024;
+
+        crearMes(new int[]{
+            1, 1, 0, 0, 0, 1,
+            1, 0, 0, 0, 0, 0, 1,
+            1, 0, 0, 0, 0, 0, 1,
+            1, 0, 0, 0, 0, 0, 1,
+            1, 0, 0
 
         }, mes, anio);
     }
