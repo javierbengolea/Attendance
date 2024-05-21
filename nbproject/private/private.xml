@@ -6,12 +6,15 @@
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/Agente.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/ATT.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/MainGUI.java</file>
-            <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/AgenteEntrada.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/util/CrearMes.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/ReporteSabana.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/personal/Encargado.java</file>
+            <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/CrearMarcacion.java</file>
+            <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/util/AdaptadorMySQL.java</file>
+            <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/AgenteEntrada.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/util/ConectarBD.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/Lector.java</file>
+            <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/att/CorreccionMarcaciones.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/general/Persona.java</file>
             <file>file:/C:/Users/SistemasRC/Documents/NetBeansProjects/ATT/src/fabrica/DepartamentosConstantes.java</file>
         </group>

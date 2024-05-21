@@ -31,18 +31,14 @@ public class AgenteEntrada {
         int tarjeta = 20;
 
         String consulta = "select entrada from agentes where tarjeta = " + tarjeta;
-
         datos.consultar(consulta);
 
         datos.resultados.next();
 
         Hora entrada = new Hora(datos.resultados.getString(1));
-
         System.out.println(entrada);
-
-        consulta = "select hora, day(fecha) from marcaciones_feb_2016 where tarjeta = "
+        consulta = "select hora, day(fecha) from marcaciones_ene_2024 where tarjeta = "
                 + tarjeta + " and codigo = 20 and tipo <> 4 order by fecha";
-
         datos.consultar(consulta);
 
         Hora temp;

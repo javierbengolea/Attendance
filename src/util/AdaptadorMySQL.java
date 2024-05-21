@@ -21,7 +21,7 @@ public class AdaptadorMySQL {
     static String DRIVER_MYSQL = "com.mysql.cj.jdbc.Driver";
 
     //static String DRIVER_ACCESS = "net.ucanaccess.jdbc.UcanloadDriver";
-    static String URL_MYSQL = "jdbc:mysql://localhost:3307/rrhh";
+    static String URL_MYSQL = "jdbc:mysql://localhost:3307/rrhh?useUnicode=true";
 
     static String USER_ACCESS = "root";
     static String PASS_ACCESS = "admin2020";
@@ -69,7 +69,7 @@ public class AdaptadorMySQL {
     }
 
     public ResultSet consultar(String consulta) {
-       // System.err.println(consulta);
+        // System.err.println(consulta);
         if (conexion == null || declaracion == null) {
             System.err.println("No existe la Base de Datos en donde consultar.");
             return null;
